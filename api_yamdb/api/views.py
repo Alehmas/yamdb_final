@@ -3,22 +3,22 @@ from django.contrib.auth.tokens import default_token_generator
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, viewsets, permissions, status
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from reviews.models import Category, Genre, Review, Title
 
-from reviews.models import Category, Genre, Title, Review
 from .filters import TitleFilter
 from .mixins import ListCreateDestroyViewSet
-from .permissions import (IsAdminOrAuthorOrReadOnly, CustomAdminPermission,
+from .permissions import (CustomAdminPermission, IsAdminOrAuthorOrReadOnly,
                           SafeMethodAdminPermission)
-from .serializers import (AuthSerializer, CategorySerializer, GenreSerializer,
-                          TitleSerializer, TitleSerializerGet,
-                          AdminUserSerializer, CommentSerializer,
-                          ReviewSerializer, UserSerializer, TokenSerializer)
+from .serializers import (AdminUserSerializer, AuthSerializer,
+                          CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer, TitleSerializer,
+                          TitleSerializerGet, TokenSerializer, UserSerializer)
 
 User = get_user_model()
 
@@ -50,6 +50,7 @@ class UserViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
+        return "Use other method"
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
