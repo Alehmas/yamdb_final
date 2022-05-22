@@ -9,10 +9,7 @@ services:
       - ./.env
 
   web:
-    build:
-      context: ../
-      dockerfile: ./api_yamdb/Dockerfile
-    restart: always
+    image: oleg2006/yamdb_final:latest
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
