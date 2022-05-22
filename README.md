@@ -3,6 +3,8 @@
 
 API для приложения Yatube разделенная на связанные контейнеры при помощи Docker Compose: контейнер с приложением, контейнер с базой данных, и контейнер со статикой
 
+![Action status](https://github.com/Oleg-2006/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+
 ## Шаблон наполнения env-файла
 
 Добавляем `.env` файл в папку `infra` и вносим необходимые данные.
