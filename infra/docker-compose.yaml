@@ -9,10 +9,10 @@ services:
       - ./.env
 
   web:
-    # image: oleg2006/yamdb_final:latest
-    build:
-      context: ../
-      dockerfile: ./api_yamdb/Dockerfile
+    image: oleg2006/yamdb_final:latest
+    # build:
+    # context: ../
+    # dockerfile: ./api_yamdb/Dockerfile
     restart: always
     volumes:
       - static_value:/app/static/
