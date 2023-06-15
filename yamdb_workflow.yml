@@ -4,35 +4,35 @@ on: [push]
 
 jobs:
   tests:
-    # «Раннер» — создание изолированного окружения с последней версией Ubuntu 
+    # "Runner" - create an isolated environment with the latest version of Ubuntu
     runs-on: ubuntu-latest
 
     steps:
-    # Запуск actions checkout — готового скрипта 
-    # для клонирования репозитория
+    # Run actions checkout - a ready-made script
+    # to clone the repository
     - uses: actions/checkout@v2
     - name: Set up Python
-      # Запуск actions setup-python — готового скрипта 
-      # для развёртывания окружения Python
+      # Run actions setup-python - ready script
+      # to deploy the Python environment
       uses: actions/setup-python@v2
       with:
-        # Выбор версии Python
+        # Choosing a Python version
         python-version: 3.7
 
     - name: Install dependencies
       run: | 
-        # обновление pip
+        # update pip
         python -m pip install --upgrade pip 
-        # установка flake8 и его плагинов
+        # install flake8 and its plugins
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-        # установка зависимостей
+        # install dependencies
         pip install -r api_yamdb/requirements.txt 
 
     - name: Test with flake8 and django tests
       run: |
-        # запуск проверки проекта по flake8
+        # run project check on flake8
         python -m flake8 
-        # запустить написанные разработчиком тесты
+        # run developer-written tests
         pytest
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
@@ -40,19 +40,19 @@ jobs:
     needs: tests
     steps:
       - name: Check out the repo
-        # Проверка доступности репозитория Docker Hub для workflow
+        # Check availability of Docker Hub repository for workflow
         uses: actions/checkout@v2 
       - name: Set up Docker Buildx
-        # Вызов сборщика контейнеров docker
+        # Call the docker container builder
         uses: docker/setup-buildx-action@v1 
       - name: Login to Docker 
-        # Запуск скрипта авторизации на Docker Hub
+        # Run authorization script on Docker Hub
         uses: docker/login-action@v1 
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to Docker Hub
-        # Пуш образа в Docker Hub 
+        # Push image to Docker Hub
         uses: docker/build-push-action@v2 
         with:
           context: ./api_yamdb
@@ -90,4 +90,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} успешно выполнен!
+        message: ${{ github.workflow }} completed successfully!
