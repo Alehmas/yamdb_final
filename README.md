@@ -11,7 +11,7 @@ an average assessment of the work is formed - rating. For one work, the user can
 ## Input data
 This project was carried out in several stages:
 1. Writing the service itself based on the terms of reference. It was carried out jointly with two other developers. I was in charge of genres, categories and titles.
-You can see the finished part and try it on a local machine [here](https://github.com/Oleg-2006/api_yamdb).
+You can see the finished part and try it on a local machine [here](https://github.com/Alehmas/api_yamdb).
 2. Configuring application separation by Docker-Compose containers. 
 3. Connecting GitHub Actions with the setting:
     * automatically run tests
@@ -47,7 +47,7 @@ You can see the finished part and try it on a local machine [here](https://githu
 ### Clone the repository
 Clone the repository to your local machine:
 ```bash
-git clone git@github.com:Oleg-2006/yamdb_final.git
+git clone git@github.com:Alehmas/yamdb_final.git
 ```
 
 ### Installation on a remote server (Ubuntu):
